@@ -11,27 +11,26 @@ const AddPhoto = () => {
   const addPhoto = (e) => {
     e.preventDefault();
     // TODO: answer here
-    const newPhoto = {
-      imageUrl,
-      captions,
-      createdAt: 'MM/DD/YY',
-      updatedAt: 'MM/DD/YY',
-      secret,
-    };
-    fetch("https://gallery-app-server.vercel.app/photos", {
-      method: 'POST',
-      body: JSON.stringify(newPhoto),
-      headers: {
-        'Content-Type' : 'application/json',
-      }
-    })
-    .then((resJson) => {
-      if (!resJson.error) {
-        navigate("/photos");
-      }else {
-        setError(resJson.error);
-      }
-    })
+    fetch('https://gallery-app-server.vercel.app/photos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                imageUrl: imageUrl,
+                captions: captions,
+                createdAt: '2022-11-25T10:58:48.032Z',
+                updatedAt: '2022-11-25T10:58:48.032Z',
+                secret: secret,
+            }),
+        })
+        .then((resJson) => {
+          if (!resJson.error) {
+            navigate("/photos");
+          }else {
+            setError(resJson.error);
+          }
+        })
   };
 
   return (
