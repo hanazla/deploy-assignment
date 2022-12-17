@@ -25,9 +25,12 @@ const EditPhoto = () => {
       },
       body: JSON.stringify(updatePhoto)
     })
-    .then((response) => {
-      response.json()
-      navigate('/photos')
+    .then((resJson) => {
+      if (!resJson.error) {
+        navigate("/photos");
+      }else {
+        setError(resJson.error);
+      }
     })
   };
 
